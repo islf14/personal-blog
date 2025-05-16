@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Article</title>
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <main>
+    <div class="title">
+      <h1>
+        <% if (typeof data !== 'undefined') { %>
+        Update Article
+        <% } else { %>
+        New Article
+        <% } %>
+      </h1>
+    </div>
+
+    <form action="#">
+      <input 
+        class="field"
+        type="text"
+        placeholder="Article Title"
+        <% if (typeof data !== 'undefined') { %>
+          value="<%= data.title %>"
+        <% } %>
+      >
+      <input
+        class="field"
+        type="text"
+        placeholder="Publishing Date"
+        <% if (typeof data !== 'undefined') { %>
+          value="<%= data.createdAt %>"
+        <% } %>
+      >
+      <textarea class="field" name="" id="" placeholder="Content"><% if (typeof data !== 'undefined') { %><%= data.content %><% } %></textarea>
+      <button>
+        <% if (typeof data !== 'undefined') { %>
+        Update
+        <% } else { %>
+        Publish
+        <% } %>
+      </button>
+    </form>
+
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

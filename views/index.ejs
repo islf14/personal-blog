@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Blog</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main>
+    
+    <div class="title">
+      <h1>Personal Blog</h1>
+      <% if (typeof admin !== 'undefined' && admin === true) { %>
+        <a href="/admin/new">+ Add</a>
+      <% } %>
+    </div>
+
+    <div>
+      <% if (typeof data !== 'undefined') {%>
+        <% data.forEach(article => { %>
+        <div class="article">
+          <span>
+            <a href="/article/<%= article.id %>"><%= article.title%></a>
+          </span>
+          <div class="date">
+            <% if (typeof admin !== 'undefined' && admin === true) { %>
+              <a href="/admin/edit/<%= article.id %>">Edit</a>
+              <a href="/admin/delete/<%= article.id %>">Delete</a>
+            <% } else { %>
+              <span><%= article.createdAt %></span>
+            <% } %>
+          </div>
+        </div>
+        <% }) %>
+      <% } %>
+    </div>
+
+  </main>
+  <script src="/script.js"></script>
+</body>
+</html>
