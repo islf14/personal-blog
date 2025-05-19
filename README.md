@@ -29,5 +29,8 @@ Mode Admin
 
 ```bash
 # /admin:
+# user: admin
+# password: admin
+
 http://localhost:3000/admin
 ```

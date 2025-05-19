@@ -18,24 +18,47 @@
       </h1>
     </div>
 
-    <form action="#">
+    <form action="<% if (typeof data !== 'undefined') { %>/admin/update/<%= data.id%><% } else { %>/admin/create<% } %>" method="POST">
+
       <input 
         class="field"
         type="text"
+        name="title"
         placeholder="Article Title"
+        autofocus
         <% if (typeof data !== 'undefined') { %>
           value="<%= data.title %>"
-        <% } %>
+        <% } else { %>
+          value=""
+        <% }%>
       >
+
       <input
-        class="field"
-        type="text"
-        placeholder="Publishing Date"
-        <% if (typeof data !== 'undefined') { %>
-          value="<%= data.createdAt %>"
+        type="datetime-local"
+        name="date"
+        class="field selectorDate"
+        <% if (typeof date !== 'undefined') { %>
+          <% if (typeof data !== 'undefined') { %>
+            value="<%= data.updatedAt %>"
+
+            <% /* %>
+            min="<%= data.createdAt %>"
+            max="<%= date %>"
+            <% */ %>
+
+          <% } else { %>     
+            value="<%= date %>"
+
+            <% /* %>
+            min="<%= date %>"
+            max="<%= date %>"
+            <% */ %>
+            
+          <% } %>
         <% } %>
       >
-      <textarea class="field" name="" id="" placeholder="Content"><% if (typeof data !== 'undefined') { %><%= data.content %><% } %></textarea>
+
+      <textarea class="field" name="content" placeholder="Content"><% if (typeof data !== 'undefined') { %><%= data.content %><% } %></textarea>
       <button>
         <% if (typeof data !== 'undefined') { %>
         Update
@@ -43,9 +66,12 @@
         Publish
         <% } %>
       </button>
+      <span style="color: red">
+        <% if (typeof error !== 'undefined') { %>
+          <%= error %>
+        <% } %>
+      </span>
     </form>
-
   </main>
-  <script src="script.js"></script>
 </body>
 </html>

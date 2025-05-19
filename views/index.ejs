@@ -16,6 +16,12 @@
       <% } %>
     </div>
 
+    <span style="color: red">
+      <% if (typeof error !== 'undefined') { %>
+        <%= error %>
+      <% } %>
+    </span>
+    
     <div>
       <% if (typeof data !== 'undefined') {%>
         <% data.forEach(article => { %>
@@ -28,15 +34,15 @@
               <a href="/admin/edit/<%= article.id %>">Edit</a>
               <a href="/admin/delete/<%= article.id %>">Delete</a>
             <% } else { %>
-              <span><%= article.createdAt %></span>
+              <span><%= article.updatedAt %></span>
             <% } %>
           </div>
         </div>
         <% }) %>
+      <% } else { %>
+        <div>There are not blogs</div>
       <% } %>
     </div>
-
   </main>
-  <script src="/script.js"></script>
 </body>
 </html>

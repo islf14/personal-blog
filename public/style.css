@@ -56,6 +56,12 @@ input {
   border: 1px solid #000;
 }
 
+.selectorDate {
+  height: 2.5em;
+  font-size: 1.2em;
+  color: #000;
+}
+
 textarea {
   height: 7em;
   font-family: cursive;

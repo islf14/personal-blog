@@ -10,12 +10,11 @@
   <main>
     <% if(typeof data !== 'undefined') { %>
       <h1><%= data.title %></h1>
-      <p class="date"><%= data.createdAt %></p>
+      <p class="date"><%= data.updatedAt %></p>
       <p><%= data.content %></p>
       <br>
       <a href="javascript:history.back()">Back</a>
     <% } %>
   </main>
-  <script src="../script.js"></script>
 </body>
 </html>

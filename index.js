@@ -1,13 +1,16 @@
-import express from 'express'
+import express, { json, urlencoded } from 'express'
 import { publicRouter } from './routes/public.js'
 import { adminRouter } from './routes/admin.js'
-import logger from 'morgan'
 import { join } from 'node:path'
+// import logger from 'morgan'
 
 const app = express()
 const port = 3000
 app.set('view engine', 'ejs')
-app.use(logger('dev'))
+app.use(json())
+app.use(urlencoded())
+
+// app.use(logger('dev'))
 
 app.use('/', publicRouter())
 app.use('/admin', adminRouter())
