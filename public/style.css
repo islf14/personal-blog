@@ -32,6 +32,9 @@ h1 {
 
 .date {
   color: #515151;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 a {
@@ -41,6 +44,19 @@ a {
 
 .article>span>a, div>a {
   margin-left: 1em;
+}
+
+.delete {
+  margin-left: 1em;
+  color: inherit;
+  border: none;
+  background-color: inherit;
+  font-family: cursive;
+  font-size: .98em;
+}
+
+.delete:hover {
+  cursor: pointer;
 }
 
 input {

@@ -53,7 +53,7 @@ export const adminRouter = () => {
     res.redirect('/admin')
   })
 
-  router.get('/delete/:id', async (req, res) => {
+  router.post('/delete/:id', async (req, res) => {
     const { id } = req.params
     const result = await deleteBlog({ id })
     if (!result) console.log('Cannot delete, please try again.')
