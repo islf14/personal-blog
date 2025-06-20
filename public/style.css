@@ -8,7 +8,7 @@ main {
   max-width: 450px;
   margin: 1.5em auto;
   border: 1px solid #000;
-  border-radius: .5em;
+  border-radius: 0.5em;
   padding: 2em;
 }
 
@@ -42,7 +42,8 @@ a {
   text-decoration: none;
 }
 
-.article>span>a, div>a {
+.article > span > a,
+div > a {
   margin-left: 1em;
 }
 
@@ -52,7 +53,7 @@ a {
   border: none;
   background-color: inherit;
   font-family: cursive;
-  font-size: .98em;
+  font-size: 0.98em;
 }
 
 .delete:hover {
@@ -67,8 +68,8 @@ input {
   font-size: 1em;
   width: 96%;
   margin-bottom: 1em;
-  padding: 0 .5em;
-  border-radius: .5em;
+  padding: 0 0.5em;
+  border-radius: 0.5em;
   border: 1px solid #000;
 }
 
@@ -84,10 +85,10 @@ textarea {
 }
 
 button {
-  border-radius: .5em;
+  border-radius: 0.5em;
   border: 1px solid #000;
-  font-size: .8em;
-  padding: .5em;
+  font-size: 0.8em;
+  padding: 0.5em;
   width: 8em;
   font-family: cursive;
   background-color: rgb(235, 245, 255);

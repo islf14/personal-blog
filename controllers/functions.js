@@ -3,12 +3,21 @@ import fs, { mkdir, unlink } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 
 const monthNames = [
-  'January', 'February', 'March', 'April',
-  'May', 'June', 'July', 'August',
-  'September', 'October', 'November', 'December'
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
 ]
 
-export async function getAllArticles () {
+export async function getAllArticles() {
   const pathArticles = join(process.cwd(), '/articles')
   // read all file names
   let files
@@ -19,12 +28,14 @@ export async function getAllArticles () {
     return false
   }
   // read all files
-  const articlesPromises = files.map(async file => {
+  const articlesPromises = files.map(async (file) => {
     try {
       const data = await fs.readFile(join(pathArticles, file), 'utf-8')
       const jsonData = JSON.parse(data)
       const date = new Date(jsonData.updatedAt)
-      const stringDate = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`
+      const stringDate = `${
+        monthNames[date.getMonth()]
+      } ${date.getDate()}, ${date.getFullYear()}`
       jsonData.updatedAt = stringDate
       return jsonData
     } catch (error) {}
@@ -33,11 +44,13 @@ export async function getAllArticles () {
   return articles
 }
 
-export async function publicViewArticle ({ id }) {
+export async function publicViewArticle({ id }) {
   const article = await viewArticle({ id })
   if (article === undefined) return null
   const date = new Date(article.updatedAt)
-  const stringDate = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`
+  const stringDate = `${
+    monthNames[date.getMonth()]
+  } ${date.getDate()}, ${date.getFullYear()}`
   article.updatedAt = stringDate
   const articleData = {
     data: article,
@@ -46,7 +59,7 @@ export async function publicViewArticle ({ id }) {
   return articleData
 }
 
-export async function adminViewArticle ({ id }) {
+export async function adminViewArticle({ id }) {
   const article = await viewArticle({ id })
   if (article === undefined) return null
   article.createdAt = dateToForm({ dbDate: article.createdAt })
@@ -59,16 +72,18 @@ export async function adminViewArticle ({ id }) {
   return articleData
 }
 
-export function dateToForm ({ dbDate }) {
+export function dateToForm({ dbDate }) {
   const date = new Date(dbDate)
   const month = String(date.getMonth() + 1).padStart(2, '0')
   const day = String(date.getDate()).padStart(2, '0')
   const localeTime = date.toLocaleTimeString('en-GB')
   const hour = localeTime.split(':')
-  return `${date.getFullYear()}-${month}-${day}T${hour[0]}:${hour[1]}:${hour[2]}`
+  return `${date.getFullYear()}-${month}-${day}T${hour[0]}:${hour[1]}:${
+    hour[2]
+  }`
 }
 
-async function viewArticle ({ id }) {
+async function viewArticle({ id }) {
   const pathArticles = join(process.cwd(), '/articles')
   let article
   // read an article
@@ -80,18 +95,17 @@ async function viewArticle ({ id }) {
   return article
 }
 
-export async function createBlog ({ input }) {
+export async function createBlog({ input }) {
   const pathArticles = join(process.cwd(), '/articles')
   // read all files
   let files
   try {
     files = await fs.readdir(pathArticles)
-  } catch (error) {
-  }
+  } catch (error) {}
   let id = 1
   if (files !== undefined) {
     // read every file
-    const articlesPromises = files.map(async file => {
+    const articlesPromises = files.map(async (file) => {
       try {
         const data = await fs.readFile(join(pathArticles, file), 'utf-8')
         return JSON.parse(data)
@@ -117,7 +131,7 @@ export async function createBlog ({ input }) {
   return blog
 }
 
-async function writeJson ({ data, name }) {
+async function writeJson({ data, name }) {
   const pathArticles = join(process.cwd(), '/articles')
   // create directory
   if (!existsSync(pathArticles)) {
@@ -136,7 +150,7 @@ async function writeJson ({ data, name }) {
   }
 }
 
-export async function updateBlog ({ input, id }) {
+export async function updateBlog({ input, id }) {
   const article = await viewArticle({ id })
   if (article) {
     const updatedArticle = {
@@ -152,7 +166,7 @@ export async function updateBlog ({ input, id }) {
   }
 }
 
-export async function deleteBlog ({ id }) {
+export async function deleteBlog({ id }) {
   const pathArticle = join(process.cwd(), `/articles/${id}.json`)
   try {
     await unlink(pathArticle)

@@ -1,6 +1,13 @@
 import { Router } from 'express'
 import { authMiddleware } from '../auth.js'
-import { adminViewArticle, createBlog, dateToForm, deleteBlog, getAllArticles, updateBlog } from '../controllers/functions.js'
+import {
+  adminViewArticle,
+  createBlog,
+  dateToForm,
+  deleteBlog,
+  getAllArticles,
+  updateBlog
+} from '../controllers/functions.js'
 
 export const adminRouter = () => {
   const router = Router()
