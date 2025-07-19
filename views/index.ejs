@@ -1,50 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Personal Blog</title>
-  <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-  <main>
-    
-    <div class="title">
-      <h1>Personal Blog</h1>
-      <% if (typeof admin !== 'undefined' && admin === true) { %>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Blog</title>
+    <link rel="stylesheet" href="<% process.cwd() %>/style.css" />
+  </head>
+  <body>
+    <main>
+      <div class="title">
+        <h1>Personal Blog</h1>
+        <% if (typeof admin !== 'undefined' && admin === true) { %>
         <a href="/admin/new">+ Add</a>
-      <% } %>
-    </div>
+        <% } %>
+      </div>
 
-    <span style="color: red">
-      <% if (typeof error !== 'undefined') { %>
-        <%= error %>
-      <% } %>
-    </span>
-    
-    <div>
-      <% if (typeof data !== 'undefined') {%>
-        <% data.forEach(article => { %>
+      <span style="color: red">
+        <% if (typeof error !== 'undefined') { %> <%= error %> <% } %>
+      </span>
+
+      <div>
+        <% if (typeof data !== 'undefined') {%> <% data.forEach(article => { %>
         <div class="article">
           <span>
             <a href="/article/<%= article.id %>"><%= article.title%></a>
           </span>
           <div class="date">
             <% if (typeof admin !== 'undefined' && admin === true) { %>
-              <a href="/admin/edit/<%= article.id %>">Edit</a>
-              <form method="post" action="/admin/delete/<%= article.id %>">
-                <input class="delete" type="submit" value="Delete">
-              </form>
+            <a href="/admin/edit/<%= article.id %>">Edit</a>
+            <form method="post" action="/admin/delete/<%= article.id %>">
+              <input class="delete" type="submit" value="Delete" />
+            </form>
             <% } else { %>
-              <span><%= article.updatedAt %></span>
+            <span><%= article.updatedAt %></span>
             <% } %>
           </div>
         </div>
-        <% }) %>
-      <% } else { %>
+        <% }) %> <% } else { %>
         <div>There are not blogs</div>
-      <% } %>
-    </div>
-  </main>
-</body>
+        <% } %>
+      </div>
+    </main>
+  </body>
 </html>

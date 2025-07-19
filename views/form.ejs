@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Form Article</title>
-  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="<% process.cwd() %>/style.css">
 </head>
 <body>
   <main>
@@ -20,7 +20,7 @@
 
     <form action="<% if (typeof data !== 'undefined') { %>/admin/update/<%= data.id%><% } else { %>/admin/create<% } %>" method="POST">
 
-      <input 
+      <input
         class="field"
         type="text"
         name="title"
@@ -31,7 +31,7 @@
         <% } else { %>
           value=""
         <% }%>
-      >
+      ></input>
 
       <input
         type="datetime-local"
@@ -56,7 +56,7 @@
             
           <% } %>
         <% } %>
-      >
+      ></input>
 
       <textarea class="field" name="content" placeholder="Content"><% if (typeof data !== 'undefined') { %><%= data.content %><% } %></textarea>
       <button>
